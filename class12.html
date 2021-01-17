@@ -102,7 +102,7 @@
                     <th>Video</th>
                 </tr>
             </thead>
-              <tbody id="data">
+              <tbody id="physics">
 
               </tbody>
               
@@ -124,17 +124,18 @@
     
 
     <div class="container-fluid">
-        <table class="table table-dark table-striped">
-            <tr>
-                <th>Name</th>
-                <th>Notes</th>
-                <th>Video</th>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-              </tr>
+        <table class="table  table-responsive-md table-bordered table-hover table-light table-striped">
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Notes</th>
+                    <th>Video</th>
+                </tr>
+            </thead>
+              <tbody id="chem">
+
+              </tbody>
               
           </table>
     </div>
@@ -153,17 +154,18 @@
     </div>
 
     <div class="container-fluid">
-        <table class="table table-dark table-striped">
-            <tr>
-                <th>Name</th>
-                <th>Notes</th>
-                <th>Video</th>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-              </tr>
+        <table class="table  table-responsive-md table-bordered table-hover table-light table-striped">
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Notes</th>
+                    <th>Video</th>
+                </tr>
+            </thead>
+              <tbody id="math">
+
+              </tbody>
               
           </table>
     </div>
@@ -183,17 +185,18 @@
 
 
     <div class="container-fluid">
-        <table class="table table-dark table-striped">
-            <tr>
-                <th>Name</th>
-                <th>Notes</th>
-                <th>Video</th>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-              </tr>
+        <table class="table  table-responsive-md table-bordered table-hover table-light table-striped">
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Notes</th>
+                    <th>Video</th>
+                </tr>
+            </thead>
+              <tbody id="eng">
+
+              </tbody>
               
           </table>
     </div>
@@ -213,17 +216,18 @@
 
 
     <div class="container-fluid">
-        <table class="table table-dark table-striped">
-            <tr>
-                <th>Name</th>
-                <th>Notes</th>
-                <th>Video</th>
-              </tr>
-              <tr>
-                <td>Jill</td>
-                <td>Smith</td>
-                <td>50</td>
-              </tr>
+        <table class="table  table-responsive-md table-bordered table-hover table-light table-striped">
+            <thead>
+
+                <tr>
+                    <th>Name</th>
+                    <th>Notes</th>
+                    <th>Video</th>
+                </tr>
+            </thead>
+              <tbody id="cs">
+
+              </tbody>
               
           </table>
     </div>
@@ -326,18 +330,58 @@
   var db = firebase.firestore();
   db.collection('class12').get().then(snapShot=>{
       const data = snapShot.docs.map(doc=>doc.data());
-      var realData = data[0].subjects.physics.chapters;
-      console.log(realData);
+      var physics = data[0].subjects.physics.chapters;
+      var chemistry = data[0].subjects.chemistry.chapters;
+      var maths = data[0].subjects.maths.chapters;
+      var csx = data[0].subjects.cs.chapters;
+      var English = data[0].subjects.English.chapters;
 
       var temp= "";
-      realData.forEach(element => {
+      physics.forEach(element => {
             temp+="<tr>";
             temp+='<td>'+element.name +'</td>';
             temp += '<td>'+`<a href="${element.link}">Notes</a>`+'</td>';
             temp += '<td>'+`<a href="${element.video}">Video</a>`+'</td>';
       });
-        document.getElementById('data').innerHTML = temp;
-  })
+        document.getElementById('physics').innerHTML = temp;
+    
+        var chem = "";
+        chemistry.forEach(element => {
+            chem+="<tr>";
+            chem+='<td>'+element.name +'</td>';
+            chem += '<td>'+`<a href="${element.link}">Notes</a>`+'</td>';
+            chem+= '<td>'+`<a href="${element.video}">Video</a>`+'</td>';
+      });
+      document.getElementById('chem').innerHTML = chem;
+    
+        var math = "";
+        maths.forEach(element => {
+            math+="<tr>";
+            math+='<td>'+element.name +'</td>';
+            math += '<td>'+`<a href="${element.link}">Notes</a>`+'</td>';
+            math+= '<td>'+`<a href="${element.video}">Video</a>`+'</td>';
+      });
+      document.getElementById('math').innerHTML = math;
+    
+        var eng = "";
+        English.forEach(element => {
+            eng+="<tr>";
+            eng+='<td>'+element.name +'</td>';
+            eng += '<td>'+`<a href="${element.link}">Notes</a>`+'</td>';
+            eng+= '<td>'+`<a href="${element.video}">Video</a>`+'</td>';
+      });
+      document.getElementById('eng').innerHTML = eng;
+
+        var cs = "";
+        csx.forEach(element => {
+            cs+="<tr>";
+            cs+='<td>'+element.name +'</td>';
+            cs += '<td>'+`<a href="${element.link}">Notes</a>`+'</td>';
+            cs+= '<td>'+`<a href="${element.video}">Video</a>`+'</td>';
+      });
+      document.getElementById('cs').innerHTML = cs;
+    
+    })
 
   
 </script>
